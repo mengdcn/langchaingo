@@ -1,6 +1,8 @@
 module github.com/tmc/langchaingo
 
-go 1.20
+go 1.21
+
+toolchain go1.21.4
 
 require (
 	github.com/google/uuid v1.4.0

@@ -1,6 +1,8 @@
 module example_kp
 
-go 1.20
+go 1.21
+
+toolchain go1.21.3
 
 require (
 	github.com/gorilla/websocket v1.5.0
@@ -69,4 +71,7 @@ require (
 
 //replace github.com/tmc/langchaingo v0.0.0-20230829032728-c85d3967da08 => github.com/comqositi/langchaingo v0.1.2
 
-replace github.com/tmc/langchaingo v0.0.0-20230829032728-c85d3967da08 => /Users/a1-6/Documents/bgy/kaopuai/langchaingo
+//replace github.com/tmc/langchaingo v0.0.0-20230829032728-c85d3967da08 => /Users/a1-6/Documents/bgy/kaopuai/langchaingo
+
+// mengdc local
+replace github.com/tmc/langchaingo v0.0.0-20230829032728-c85d3967da08 => /Users/mac/mengdc/project/src/local/forksd/langchaingo
