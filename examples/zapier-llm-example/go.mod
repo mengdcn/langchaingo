@@ -1,6 +1,8 @@
 module zapier-llm-example
 
-go 1.19
+go 1.21
+
+toolchain go1.21.3
 
 require github.com/tmc/langchaingo v0.0.0-20230829032009-e89bc0bd369f
 

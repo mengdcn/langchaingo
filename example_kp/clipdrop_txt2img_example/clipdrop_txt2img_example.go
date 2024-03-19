@@ -269,9 +269,9 @@ func testTextInpainting() (imagesResponse *clipdropapiParams.ImagesResponse, err
 
 func testUnCrop() (imagesResponse *clipdropapiParams.ImagesResponse, err error) {
 	imageRequest := &clipdropapiParams.UnCropRequest{}
-	imageRequest.ImageFile = imagesResource + "image-upscaling.png"
-	imageRequest.ExtendLeft = 1000 // 可选 最大为 2k，默认为 0 【正负2k】
-	imageRequest.ExtendRight = 1000
+	imageRequest.ImageFile = imagesResource + "reimagine_1024x1024.jpg" //"image-upscaling.png"
+	imageRequest.ExtendLeft = -700                                      // 可选 最大为 2k，默认为 0 【正负2k】
+	imageRequest.ExtendRight = 0
 	imageRequest.ExtendUp = 0
 	imageRequest.ExtendDown = 0
 
@@ -287,6 +287,24 @@ func testUnCrop() (imagesResponse *clipdropapiParams.ImagesResponse, err error) 
 func testImage() (imagesResponse *clipdropapiParams.ImagesResponse, err error) {
 	imagineRequest := &clipdropapiParams.ImagesRequest{}
 	imagineRequest.Prompt = "shot of vaporwave fashion dog in miami"
+	//imagineRequest.Prompt = "Long, long ago, there was an ancient small village where the people lived a simple and simple life. This village has a special tradition, which is that every year a young person is selected as the moistening soil, responsible for nourishing the earth and ensuring a bountiful harvest. This year, the youngest boy in the village - Xiaoming, was selected as the Runtu. He is a kind and hardworking young man, full of awe and gratitude towards nature. Xiaoming was well aware of his heavy responsibility, so he began working hard day and night to ensure that every inch of land was fully nourished. However, this year there was particularly little rainfall in the village, the land dried up and cracked, and the crops turned yellow. Xiaoming saw it in his eyes and was anxious in his heart, so he decided to seek help. So he embarked on a journey to search for rainwater. Xiaoming climbed mountains and crossed mountains, traversed forests and deserts, and went through countless hardships. Finally, in a remote cave, he discovered a mysterious spring. This spring water is clear and sweet, and has magical power to nourish the earth. Xiaoming was overjoyed and immediately decided to bring this magical spring back to the village. On the way back to the village, Xiaoming encountered a difficult problem. That is a turbulent river, with a wide surface and turbulent currents. Xiao Ming was unable to cross the river directly, and he fell into a predicament. Just when he was at a loss, a kind turtle appeared. The turtle told Xiaoming that it could help him cross the river, but Xiaoming needed to agree to one condition. Xiaoming eagerly agreed to the turtle's conditions, so the turtle carried him across the river. Xiaoming was extremely grateful and thanked the turtle before continuing on his journey. Finally, Xiaoming returned to the village with the magical spring water. He immediately poured the spring water into the village canal, nourishing every inch of the land.urtle suddenly appeared. It told Xiaoming that the condition it had promised before was to ask Xiaoming to become its friend. " //"shot of vaporwave fashion dog in miami"
+	// 长度计算 官方文档要求在1000个字符以内，测试1999个 （430个单词）也可以。2130 个字符就不可以（450个单词）
+	//sl := strings.Split(imagineRequest.Prompt, " ")
+	//slen := len(sl)
+	//var solen, stlen int
+	//for _, i2 := range sl {
+	//	if strings.Contains(i2, ",") {
+	//		slo := strings.Split(i2, ",")
+	//		solen += len(slo)
+	//	}
+	//	if strings.Contains(i2, ".") {
+	//		slt := strings.Split(i2, ".")
+	//		stlen += len(slt)
+	//	}
+	//}
+	//fmt.Println("len==", utf8.RuneCountInString(imagineRequest.Prompt), "slen ", slen, "slen, ", solen, "slen. ", stlen, "total len", slen+solen+stlen)
+
+	// len== 2101 slen  355 slen,  50 slen.  46 total len 451 。报错500
 
 	defer func() {
 		if r := recover(); r != nil {
